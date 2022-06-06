@@ -71,11 +71,11 @@ public class Post implements Serializable {
         this.postUrl = postUrl;
     }
 
-    public String getUsername() {
+    public String getUserName() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUserName(String username) {
         this.username = username;
     }
 
@@ -124,12 +124,20 @@ public class Post implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Post)) return false;
         Post post = (Post) o;
-        return getVoteCount() == post.getVoteCount() && Objects.equals(getId(), post.getId()) && Objects.equals(getTitle(), post.getTitle()) && Objects.equals(getPostUrl(), post.getPostUrl()) && Objects.equals(getUsername(), post.getUsername()) && Objects.equals(getUserId(), post.getUserId()) && Objects.equals(getPostedAt(), post.getPostedAt()) && Objects.equals(getUpdatedAt(), post.getUpdatedAt()) && Objects.equals(getComments(), post.getComments());
+        return getVoteCount() == post.getVoteCount() &&
+                Objects.equals(getId(), post.getId()) &&
+                Objects.equals(getTitle(), post.getTitle()) &&
+                Objects.equals(getPostUrl(), post.getPostUrl()) &&
+                Objects.equals(getUserName(), post.getUserName()) &&
+                Objects.equals(getUserId(), post.getUserId()) &&
+                Objects.equals(getPostedAt(), post.getPostedAt()) &&
+                Objects.equals(getUpdatedAt(), post.getUpdatedAt()) &&
+                Objects.equals(getComments(), post.getComments());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getTitle(), getPostUrl(), getUsername(), getVoteCount(), getUserId(), getPostedAt(), getUpdatedAt(), getComments());
+        return Objects.hash(getId(), getTitle(), getPostUrl(), getUserName(), getVoteCount(), getUserId(), getPostedAt(), getUpdatedAt(), getComments());
     }
 
     @Override

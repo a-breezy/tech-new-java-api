@@ -43,13 +43,13 @@ public class UserController {
         return returnUser;
     }
 
-        @PostMapping("/api/users")
-        public User addUser(@RequestBody User user) {
-            // Encrypt password
-            user.setPassword((BCrypt.hashpw(user.getPassword(), BCrypt.gensalt())));
-            repository.save(user);
-            return user;
-        }
+    @PostMapping("/api/users")
+    public User addUser(@RequestBody User user) {
+        // Encrypt password
+        user.setPassword((BCrypt.hashpw(user.getPassword(), BCrypt.gensalt())));
+        repository.save(user);
+        return user;
+    }
 
     @PutMapping("/api/users/{id}")
     public User updateUser(@PathVariable int id, @RequestBody User user) {
