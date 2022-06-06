@@ -20,7 +20,6 @@ public class UserController {
     @Autowired
     VoteRepository voteRepository;
 
-
     @GetMapping("/api/users")
     public List<User> getAllUser() {
         List<User> userList = repository.findAll();

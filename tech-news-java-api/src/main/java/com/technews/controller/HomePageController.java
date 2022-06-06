@@ -30,7 +30,6 @@ public class HomePageController {
     @Autowired
     CommentRepository commentRepository;
 
-    // create login endpoint
     @GetMapping("/login")
     public String login(Model model, HttpServletRequest request) {
 
@@ -38,21 +37,18 @@ public class HomePageController {
             return "redirect:/";
         }
 
-        // send data to thymeleaf template --> login
         model.addAttribute("user", new User());
         return "login";
     }
 
-    // create logout endpoint
     @GetMapping("/users/logout")
-    public  String logout(HttpServletRequest request) {
+    public String logout(HttpServletRequest request) {
         if (request.getSession(false) != null) {
             request.getSession().invalidate();
         }
         return "redirect:/login";
     }
 
-    // homepage endpoint
     @GetMapping("/")
     public String homepageSetup(Model model, HttpServletRequest request) {
         User sessionUser = new User();
@@ -64,6 +60,7 @@ public class HomePageController {
             model.addAttribute("loggedIn", false);
         }
 
+
         List<Post> postList = postRepository.findAll();
         for (Post p : postList) {
             p.setVoteCount(voteRepository.countVotesByPostId(p.getId()));
@@ -74,6 +71,7 @@ public class HomePageController {
         model.addAttribute("postList", postList);
         model.addAttribute("loggedIn", sessionUser.isLoggedIn());
 
+        // "point" and "points" attributes refer to upvotes.
         model.addAttribute("point", "point");
         model.addAttribute("points", "points");
 
